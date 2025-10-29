@@ -9,6 +9,7 @@ import fr.devavance.calculatrice.Division;
 import fr.devavance.calculatrice.Multiplication;
 import fr.devavance.calculatrice.Operation;
 import fr.devavance.calculatrice.Soustraction;
+import fr.devavance.calculatrice.TypeOperation;
 import javax.servlet.ServletException;
 
 
@@ -18,24 +19,25 @@ import javax.servlet.ServletException;
  */
 public class CalculatorService {
     public double calculer(String operationNom, int operande_1, int operande_2) 
-        throws ServletException {
+            throws ServletException {
+        TypeOperation type = TypeOperation.fromCode(operationNom);
         Operation op;
 
-        switch (operationNom) {
-            case "add":
+        switch (type) {
+            case ADD:
                 op = new Addition();
                 break;
-            case "sub":
+            case SUB:
                 op = new Soustraction();
                 break;
-            case "mul":
+            case MUL:
                 op = new Multiplication();
                 break;
-            case "div":
+            case DIV:
                 op = new Division();
                 break;
             default:
-                throw new ServletException("Opération invalide !");
+                throw new ServletException();
         }
 
         return op.calculer(operande_1, operande_2);
