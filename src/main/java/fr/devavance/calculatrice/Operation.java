@@ -9,5 +9,6 @@ package fr.devavance.calculatrice;
  * @author yassine
  */
 public interface Operation {
-    
+    Double calculer(int operande_1, int operande_2);
+    String getNom();
 }

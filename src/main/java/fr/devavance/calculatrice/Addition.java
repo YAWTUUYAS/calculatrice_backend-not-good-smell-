@@ -8,6 +8,13 @@ package fr.devavance.calculatrice;
  *
  * @author yassine
  */
-public class Addition {
-    
+public class Addition implements Operation{
+    @Override
+    public Double calculer(int operande_1, int operande_2){
+        return operande_1 + operande_2;
+    }
+    @Override
+    public String getNom(){
+        return "add";
+    }
 }

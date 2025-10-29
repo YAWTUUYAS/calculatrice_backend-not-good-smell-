@@ -15,5 +15,7 @@ public class Division implements Operation{
         return (double) operande_1 / operande_2;
     }
     @Override
-    public String getNom() { return "div"; }
+    public String getNom() { 
+        return "div"; 
+    }
 }

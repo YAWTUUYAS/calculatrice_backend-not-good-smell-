@@ -14,6 +14,8 @@ public class Multiplication implements Operation{
         return operande_1 * operande_2; 
     }
     @Override
-    public String getNom() { return "mul"; }
+    public String getNom() { 
+        return "mul"; 
+    }
     
 }
