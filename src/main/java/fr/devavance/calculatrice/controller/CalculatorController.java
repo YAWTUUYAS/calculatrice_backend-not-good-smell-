@@ -9,13 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.devavance.calculatrice.Calculator;
-
 
 import fr.devavance.calculatrice.exceptions.OperatorException;
-
-import java.util.ArrayList;
-
+import fr.devavance.service.CalculatorService;
 
 /**
  *
@@ -32,20 +28,13 @@ import java.util.ArrayList;
 @WebServlet(urlPatterns = {"/calculate/*"})
 public class CalculatorController extends HttpServlet {
 
-    private static ArrayList<String> operationsPermises = null;
+    private CalculatorService service;
 
 
     @Override
     public void init() throws ServletException {
         super.init();
-        this.operationsPermises = new ArrayList<>();
-
-        this.operationsPermises.add("add");
-        this.operationsPermises.add("sub");
-        this.operationsPermises.add("mul");
-        this.operationsPermises.add("div");
-
-
+        this.service = new CalculatorService();
     }
 
     //<editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -62,33 +51,39 @@ public class CalculatorController extends HttpServlet {
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response)
             throws ServletException, IOException {
-
         
-        String operation = request.getParameter("operation");
-        String operande1 = request.getParameter("operande1");
-        String operande2= request.getParameter("operande2");
+            // 1. Récupération des paramètres
+            String operation = request.getParameter("operation"); 
+            String operande1_s = request.getParameter("operande1"); 
+            String operande2_s = request.getParameter("operande2");
+            
+            // 2. Validation
+            validerOperation(operation);
 
-        if (isInvalidOperator(operation))
+            // 3. Conversion
+            int operande1 = parseOperande(operande1_s);
+            int operande2 = parseOperande(operande2_s);
 
-            throw new OperatorException();
+            // 4. Calcul
+            double resultat = calculerResultat(operation, operande1, operande2);
 
-
-
-        // méthode de calcul du resultat
-        double resultat = calculerResultat(operande1, operande2, operation);
-
-        
-
-        
-        // méthode pour le traitement du resultat
-        accessView(operande1, operande2, operation, resultat, response);   
-        
-
+            // 5. Affichage
+            accessView(operande1_s, operande2_s, operation, resultat, response);
+            
     }
     
-    public void accessView(String operande1, String operande2, String operation, Double resultat, HttpServletResponse response) 
+    private void validerOperation(String operation) {
+        if (operation == null || operation.isEmpty()) {
+            throw new OperatorException();
+        }
+    }
+    
+    private int parseOperande(String value) {
+        return Integer.parseInt(value);
+    }
+    
+    public void accessView(String operande1_s, String operande2_s, String operation, Double resultat, HttpServletResponse response) 
             throws IOException{
-        
         
         response.setContentType("text/html;charset=UTF-8");
 
@@ -104,8 +99,8 @@ public class CalculatorController extends HttpServlet {
             out.println("<body>");
 
             out.println("<div>");
-            out.println("<p class=\"operande\">Operande 1 : " + operande1 + "</p>");
-            out.println("<p class=\"operande\">Operande 2 : " + operande2 + "</p>");
+            out.println("<p class=\"operande\">Operande 1 : " + operande1_s + "</p>");
+            out.println("<p class=\"operande\">Operande 2 : " + operande2_s + "</p>");
             out.println("<p class=\"operation\">Operateur : " + operation + "</p>");
             out.println("<p class=\"resultat\">resultat : " + resultat + "</p>");
             out.println("</div>");
@@ -119,33 +114,8 @@ public class CalculatorController extends HttpServlet {
         }
     }
     
-    public Double calculerResultat(String operande1_s, String operande2_s, String operation) 
-            throws ServletException{
-        int operande1 = Integer.parseInt(operande1_s);
-        int operande2 = Integer.parseInt(operande2_s);
-        
-        switch (operation) {
-            case "add":
-                return Calculator.addition(operande1, operande2);
-                
-            case "sub":
-                return Calculator.soustraction(operande1, operande2);
-                
-            case "div":
-                return Calculator.division(operande1, operande2);
-                
-            case "mul":
-                return Calculator.multiplication(operande1, operande2);
-                
-            default:
-                throw new ServletException("Opération invalide !");
-        }
-    }
-    
-    public boolean isInvalidOperator(String operation){
-        return operation == null
-                || operation.isEmpty()
-                || !CalculatorController.operationsPermises.contains(operation);
+    private double calculerResultat(String operation, int operande_1, int operande_2) 
+            throws ServletException {
+        return service.calculer(operation, operande_1, operande_2);
     }
 }
-     

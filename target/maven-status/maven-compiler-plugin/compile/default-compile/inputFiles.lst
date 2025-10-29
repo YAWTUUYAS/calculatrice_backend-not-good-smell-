@@ -1,4 +1,9 @@
-/home/kauth_16/Téléchargements/calculatrice_backend[not good smell]/calculatrice_backend/src/main/java/fr/devavance/calculatrice/exceptions/OperatorException.java
-/home/kauth_16/Téléchargements/calculatrice_backend[not good smell]/calculatrice_backend/src/main/java/fr/devavance/calculatrice/Calculator.java
-/home/kauth_16/Téléchargements/calculatrice_backend[not good smell]/calculatrice_backend/src/main/java/fr/devavance/calculatrice/exceptions/ErrorHandler.java
-/home/kauth_16/Téléchargements/calculatrice_backend[not good smell]/calculatrice_backend/src/main/java/fr/devavance/calculatrice/controller/CalculatorController.java
+/home/yassine/NetBeansProjects/calculatrice_backend-not-good-smell-/src/main/java/fr/devavance/calculatrice/Soustraction.java
+/home/yassine/NetBeansProjects/calculatrice_backend-not-good-smell-/src/main/java/fr/devavance/calculatrice/Operation.java
+/home/yassine/NetBeansProjects/calculatrice_backend-not-good-smell-/src/main/java/fr/devavance/calculatrice/controller/CalculatorController.java
+/home/yassine/NetBeansProjects/calculatrice_backend-not-good-smell-/src/main/java/fr/devavance/calculatrice/exceptions/ErrorHandler.java
+/home/yassine/NetBeansProjects/calculatrice_backend-not-good-smell-/src/main/java/fr/devavance/calculatrice/Multiplication.java
+/home/yassine/NetBeansProjects/calculatrice_backend-not-good-smell-/src/main/java/fr/devavance/calculatrice/Addition.java
+/home/yassine/NetBeansProjects/calculatrice_backend-not-good-smell-/src/main/java/fr/devavance/calculatrice/Division.java
+/home/yassine/NetBeansProjects/calculatrice_backend-not-good-smell-/src/main/java/fr/devavance/service/CalculatorService.java
+/home/yassine/NetBeansProjects/calculatrice_backend-not-good-smell-/src/main/java/fr/devavance/calculatrice/exceptions/OperatorException.java
