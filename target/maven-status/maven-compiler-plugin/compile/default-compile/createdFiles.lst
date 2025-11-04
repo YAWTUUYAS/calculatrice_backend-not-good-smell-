@@ -1,9 +1,2 @@
-fr/devavance/calculatrice/Division.class
-fr/devavance/calculatrice/Soustraction.class
-fr/devavance/calculatrice/Multiplication.class
-fr/devavance/calculatrice/controller/CalculatorController.class
-fr/devavance/calculatrice/Operation.class
-fr/devavance/service/CalculatorService.class
-fr/devavance/calculatrice/exceptions/OperatorException.class
-fr/devavance/calculatrice/ErrorHandler.class
 fr/devavance/calculatrice/Addition.class
+fr/devavance/calculatrice/Operation.class
